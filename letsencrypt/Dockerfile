@@ -1,4 +1,4 @@
-ARG BUILD_FROM=ghcr.io/home-assistant/base-debian:trixie-2025.12.2
+ARG BUILD_FROM=ghcr.io/home-assistant/base-debian:trixie-2026.10.3
 FROM $BUILD_FROM
 
 # Allow pip to install packages system-wide on Debian
