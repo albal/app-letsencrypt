@@ -19,6 +19,7 @@ options:
   certfile: fullchain.pem
   challenge: http
   dns: {}
+  log_format: timestamp
 ports:
   80/tcp: 80
 schema:
@@ -195,4 +196,5 @@ schema:
   force_renew: bool?
   eab_kid: str?
   eab_hmac_key: str?
+  log_format: str?
 startup: once
