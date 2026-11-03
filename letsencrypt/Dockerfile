@@ -1,4 +1,4 @@
-ARG BUILD_FROM
+ARG BUILD_FROM=ghcr.io/home-assistant/base-debian:trixie-2025.12.2
 FROM $BUILD_FROM
 
 # Allow pip to install packages system-wide on Debian
@@ -9,15 +9,14 @@ ENV PIP_BREAK_SYSTEM_PACKAGES=1
 # Only legacy plugins are kept for providers not supported by lego: gehirn, eurodns, noris
 # Azure and HE is also kept as legacy for backward compatibility (will be removed in future version)
 ARG \
-    BUILD_ARCH \
-    ACME_VERSION \
-    CERTBOT_DNS_AZURE_VERSION \
-    CERTBOT_DNS_EURODNS_VERSION \
-    CERTBOT_DNS_HURRICANE_ELECTRIC_VERSION \
-    CERTBOT_DNS_MULTI_VERSION \
-    CERTBOT_DNS_NORISNETWORK_VERSION \
-    CERTBOT_VERSION \
-    CRYPTOGRAPHY_VERSION
+    ACME_VERSION=3.3.0 \
+    CERTBOT_DNS_AZURE_VERSION=2.6.1 \
+    CERTBOT_DNS_EURODNS_VERSION=1.8.1 \
+    CERTBOT_DNS_HURRICANE_ELECTRIC_VERSION=0.1.0 \
+    CERTBOT_DNS_MULTI_VERSION=5.3.1 \
+    CERTBOT_DNS_NORISNETWORK_VERSION=0.3.0 \
+    CERTBOT_VERSION=3.3.0 \
+    CRYPTOGRAPHY_VERSION=44.0.2
 
 RUN \
     set -x \
@@ -59,3 +58,9 @@ RUN \
 
 # Copy data
 COPY rootfs /
+
+LABEL \
+    org.opencontainers.image.title="Home Assistant App: Let's Encrypt" \
+    org.opencontainers.image.description="Manage certificate from Let's Encrypt" \
+    org.opencontainers.image.source="https://github.com/home-assistant/app-letsencrypt" \
+    org.opencontainers.image.licenses="Apache License 2.0"
